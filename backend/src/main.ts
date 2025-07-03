@@ -33,6 +33,9 @@ async function bootstrap() {
                     'data:',
                     'images.unsplash.com',
                 ],
+                connectSrc: [
+                    "'self'",
+                ],
             },
         })
     );
@@ -42,7 +45,6 @@ async function bootstrap() {
     });
 
     await app.listen(process.env.PORT ?? 3000);
-    console.info('Starting the app. Listening on port ' + process.env.PORT);
 }
 
 bootstrap();

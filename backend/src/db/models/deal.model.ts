@@ -43,10 +43,10 @@ export class Deal {
     @Prop()
     originalPrice: number;
 
-    @Prop({ index: true })
+    @Prop({ index: 1 })
     discountPrice: number;
 
-    @Prop({ index: true })
+    @Prop({ index: -1 })
     discountPercentage: number;
 
     @Prop()
@@ -64,7 +64,7 @@ export class Deal {
     @Prop()
     merchantName: string;
 
-    @Prop({ index: true })
+    @Prop({ index: -1 })
     merchantRating: number;
 
     @Prop()
@@ -88,7 +88,7 @@ export class Deal {
     @Prop()
     reviewCount: number;
 
-    @Prop()
+    @Prop({ index: -1 })
     averageRating: number;
 
     @Prop()

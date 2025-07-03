@@ -11,6 +11,7 @@ import { Footer } from '../../layout/Footer.tsx';
 import Breadcrumbs from '../../components/Breadcrumbs.tsx';
 import FetchError from '../../components/FetchError.tsx';
 import { useSearchParams } from 'react-router-dom';
+import { SortingSelectButton } from '../../components/SortingSelect.tsx';
 
 interface FilterUrlParams {
     price?: string;
@@ -100,7 +101,19 @@ const DealsPage: React.FC = () => {
         setAllData(v => {
             return [...v, ...fetched.filter(i => !v.find(j => j.id === i.id))];
         })
-    }, [])
+    }, []);
+
+    const sorting = useMemo(() => {
+        return filter.sortBy + '-' + filter.sortOrder;
+    }, [filter.sortBy, filter.sortOrder]);
+
+    const onSortingChange = useCallback((value: string) => {
+        setFilter(v => ({
+            ...v,
+            sortBy: value.split('-')[0] as SortField,
+            sortOrder: value.split('-')[1] as SortOrder,
+        }))
+    }, []);
 
     useEffect(() => {
        mergeData(data);
@@ -110,7 +123,12 @@ const DealsPage: React.FC = () => {
         <>
             <Header />
             <Breadcrumbs path={ [] } header="Deals" />
+
             <div className="mx-auto w-full max-w-[1200px]">
+                <div className="flex justify-items-end mb-4">
+                    <SortingSelectButton value={sorting}
+                                         onChange={ onSortingChange } />
+                </div>
                 <div className="flex">
                     <Filters filter={ filter } onChange={ setFilter } />
 

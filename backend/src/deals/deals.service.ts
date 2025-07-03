@@ -55,7 +55,7 @@ export class DealsService {
                 return { score: direction };
             case 'rating':
             default:
-                return { merchantRating: direction };
+                return { averageRating: direction };
         }
     }
 

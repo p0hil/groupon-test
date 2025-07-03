@@ -11,7 +11,7 @@
     "frontend"
   ],
   "scripts": {
-    "build": "yarn workspace backend build && rm -Rf frontend/dist && yarn workspace frontend build && cp -Rf frontend/dist backend/static",
+    "build": "yarn workspace backend build && rm -Rf frontend/dist && rm -Rf backend/static && yarn workspace frontend build && cp -Rf frontend/dist backend/static",
     "start": "yarn workspace backend start:prod"
   }
 }

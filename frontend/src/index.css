@@ -20,6 +20,45 @@ h1 {
     color: rgb(219 9 174 / var(--tw-text-opacity));
 }
 
+.text-body {
+    --tw-text-opacity: 1;
+    color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+
+.bg-secondary {
+    --tw-bg-opacity: 1;
+    background-color: rgb(237 239 241 / var(--tw-bg-opacity));
+}
+
+.bg-black {
+    --tw-bg-opacity: 1;
+    background-color: rgb(11 17 30 / var(--tw-bg-opacity));
+}
+
+.shadow-xl-black {
+    --tw-shadow: 0px 27px 105px -16px rgba(8,14,28,0.20);
+    --tw-shadow-colored: 0px 27px 105px -16px var(--tw-shadow-color);
+}
+
+.bg-white {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255/var(--tw-bg-opacity));
+}
+
+.radix-state-checked {
+    --tw-bg-opacity: 1;
+    background-color: rgb(0 119 217/var(--tw-bg-opacity));
+}
+
+.shadow-xl-black, .shadow-xl-blue {
+    box-shadow: var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);
+}
+
+.hover\:bg-secondary-hover:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(222 226 232 / var(--tw-bg-opacity));
+}
+
 .text-primary {
     --tw-text-opacity: 1;
     color: rgb(0 124 31 / var(--tw-text-opacity));

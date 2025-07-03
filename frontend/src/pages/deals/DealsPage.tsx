@@ -3,7 +3,7 @@ import { useApi } from '../../hooks/useApi.ts';
 import { useQuery } from '@tanstack/react-query';
 import Feed from './components/Feed.tsx';
 import { Deal, type FilterCriteria, type SortField, type SortOrder } from '../../api/dto/deals.ts';
-import Pagination from './components/Pagination.tsx';
+import LoadMore from './components/Pagination.tsx';
 import { isEqual, isUndefined, omitBy } from 'lodash';
 import Filters from './components/filters/Filters.tsx';
 import { Header } from '../../layout/Header.tsx';
@@ -29,7 +29,7 @@ function serializeFilter(filter: FilterCriteria): FilterUrlParams {
 }
 
 function unserializeFilter(params: URLSearchParams): Partial<FilterCriteria> {
-    const sort= (params.get('sort') || 'rating-desc').split('-');
+    const sort = (params.get('sort') || 'rating-desc').split('-');
     return {
         maxPrice: parseInt(params.get('price') || '', 10) || undefined,
         merchantRating: parseInt(params.get('rating') || '', 10) || undefined,
@@ -100,7 +100,7 @@ const DealsPage: React.FC = () => {
 
         setAllData(v => {
             return [...v, ...fetched.filter(i => !v.find(j => j.id === i.id))];
-        })
+        });
     }, []);
 
     const sorting = useMemo(() => {
@@ -112,11 +112,11 @@ const DealsPage: React.FC = () => {
             ...v,
             sortBy: value.split('-')[0] as SortField,
             sortOrder: value.split('-')[1] as SortOrder,
-        }))
+        }));
     }, []);
 
     useEffect(() => {
-       mergeData(data);
+        mergeData(data);
     }, [data, mergeData]);
 
     return (
@@ -126,7 +126,7 @@ const DealsPage: React.FC = () => {
 
             <div className="mx-auto w-full max-w-[1200px]">
                 <div className="flex justify-items-end mb-4">
-                    <SortingSelectButton value={sorting}
+                    <SortingSelectButton value={ sorting }
                                          onChange={ onSortingChange } />
                 </div>
                 <div className="flex">
@@ -143,7 +143,10 @@ const DealsPage: React.FC = () => {
                             {
                                 error && <FetchError />
                             }
-                            <Pagination hasMore={ hasMore } onLoadMore={ () => setOffset(offset + limit) } />
+                            {
+                                !isLoading &&
+                                <LoadMore hasMore={ hasMore } onLoadMore={ () => setOffset(offset + limit) } />
+                            }
                         </div>
                     </div>
                 </div>

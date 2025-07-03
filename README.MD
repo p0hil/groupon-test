@@ -1,1 +1,2 @@
 ## Groupon case study
+

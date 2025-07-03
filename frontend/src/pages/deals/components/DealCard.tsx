@@ -1,4 +1,5 @@
 import type { Deal } from '../../../api/dto/deals.ts';
+import React from 'react';
 
 type Props = {
     data: Deal;
@@ -96,4 +97,4 @@ const DealCard = (props: Props) => {
     )
 }
 
-export default DealCard;
+export default React.memo(DealCard);

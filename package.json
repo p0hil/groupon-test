@@ -1,0 +1,17 @@
+{
+  "name": "groupon-test",
+  "version": "1.0.0",
+  "license": "MIT",
+  "engines": {
+    "node": "22.*"
+  },
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "build": "yarn workspace backend build && rm -Rf frontend/dist && yarn workspace frontend build && cp -Rf frontend/dist backend/static",
+    "start": "yarn workspace backend start:prod"
+  }
+}
